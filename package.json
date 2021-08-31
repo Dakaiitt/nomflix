@@ -39,7 +39,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://Dakaiitt.github.io/nomflix",
+  "homepage": "https://nomflix-dakaiitt.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
