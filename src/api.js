@@ -16,6 +16,10 @@ export const getFlagsApi = {
   flag: (country_code) => flagsApi.get(`${country_code}/flat/64.png`),
 };
 
+export const collectionApi = {
+  collection: (collection_id) => api.get(`collection/${collection_id}`),
+};
+
 export const trendingApi = {
   trendingMovie: () => api.get("trending/movie/day"),
   trendingTVshow: () => api.get("trending/tv/day"),

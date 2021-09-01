@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes, { arrayOf } from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import ImdbLogo from "../../assets/imdb.png";
 import StarRatings from "react-star-ratings";
-import DetailTab from "../../Components/DetailTab";
+import DetailTab from "Components/DetailTab";
+import Tabs from "Components/Tabs";
 
 const Container = styled.div`
   height: calc(100vh - 60px);
@@ -67,7 +68,7 @@ const Divider = styled.span`
 const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const ImdbLink = styled.img`
@@ -84,13 +85,30 @@ const FlagImg = styled.img`
   padding-right: 7px;
 `;
 
-const CountryName = styled.div`
-  display: inline;
+const DTabContainer = styled.div`
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-rows: [DTabHeader] 1fr [DTabContent] 6fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  height: 300px;
 `;
 
-const opts = {
-  height: "50%",
-};
+const DTabHeader = styled.div`
+  border: solid 2px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  &:hover {
+    background: gray;
+  }
+`;
+
+const DTabContent = styled.div`
+  border: solid 2px black;
+  grid-column: 1 / 4;
+`;
 
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
@@ -192,7 +210,12 @@ const DetailPresenter = ({ result, loading, error }) =>
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
-          <DetailTab />
+          {/* <DetailTab result={result} /> */}
+          <Tabs result={result} />
+          {/* <YouTube
+            videoId={result.videos.results.map((a) => a.key)[0]}
+            opts={opts}
+          /> */}
         </Data>
       </Content>
     </Container>

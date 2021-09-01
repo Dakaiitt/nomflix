@@ -1,4 +1,4 @@
-import { moviesApi, tvApi } from "api.js";
+import { moviesApi, tvApi, collectionApi } from "api.js";
 import React from "react";
 import DetailPresenter from "./DetailPresenter.js";
 
