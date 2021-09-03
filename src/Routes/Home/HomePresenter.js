@@ -6,6 +6,7 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Section from "Components/TrendingSection";
 import Poster from "Components/TrendingPoster";
+import Main from "Components/Main";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,7 +23,13 @@ const settings = {
   slidesToScroll: 3,
 };
 
-const HomePresenter = ({ trendingMovie, trendingTVshow, error, loading }) => (
+const HomePresenter = ({
+  popular,
+  trendingMovie,
+  trendingTVshow,
+  error,
+  loading,
+}) => (
   <>
     <Helmet>
       <title>Home | Nomflix</title>
@@ -34,6 +41,7 @@ const HomePresenter = ({ trendingMovie, trendingTVshow, error, loading }) => (
         <Helmet>
           <title>Home | Nomflix</title>
         </Helmet>
+        {/* <Main /> */}
         {trendingMovie && trendingMovie.length > 0 && (
           <Section title="Trending movies today">
             {trendingMovie.map((movie) => (
@@ -74,6 +82,7 @@ const HomePresenter = ({ trendingMovie, trendingTVshow, error, loading }) => (
 );
 
 HomePresenter.propTypes = {
+  popular: PropTypes.array,
   trendingMovie: PropTypes.array,
   trendingTVshow: PropTypes.array,
   loading: PropTypes.bool.isRequired,

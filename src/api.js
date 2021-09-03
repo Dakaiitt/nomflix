@@ -17,7 +17,7 @@ export const getFlagsApi = {
 };
 
 export const collectionApi = {
-  collection: (collection_id) => api.get(`collection/${collection_id}`),
+  collectionDetail: (collection_id) => api.get(`collection/${collection_id}`),
 };
 
 export const trendingApi = {

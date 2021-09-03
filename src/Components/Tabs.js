@@ -9,7 +9,6 @@ import Box from "@material-ui/core/Box";
 import YouTube from "react-youtube";
 import styled from "styled-components";
 import NoImage from "../assets/noimage.png";
-import { collectionApi } from "api.js";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -119,10 +118,6 @@ const YtItem = styled.div`
   display: inline-block;
 `;
 
-const CollectionImg = styled.img`
-  height: 200px;
-`;
-
 const SeasonsImg = styled.img`
   height: 200px;
 `;
@@ -180,6 +175,14 @@ const CollectionItem = styled.div`
   margin-bottom: 10px;
   margin-right: 10px;
   display: inline-block;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CollectionImg = styled.img`
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
 `;
 
 const CollectionName = styled.div`
@@ -187,9 +190,14 @@ const CollectionName = styled.div`
   font-size: 12px;
 `;
 
-export default function SimpleTabs({ result }) {
+const Divider = styled.div`
+  display: inline-block;
+  margin: 20px;
+`;
+
+export default function SimpleTabs({ result, collection }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(2);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -272,16 +280,29 @@ export default function SimpleTabs({ result }) {
                 <>
                   <CollectionImg
                     src={
-                      result.belongs_to_collection.poster_path
-                        ? `https://image.tmdb.org/t/p/w300${result.belongs_to_collection.poster_path}`
+                      collection.poster_path
+                        ? `https://image.tmdb.org/t/p/w300${collection.poster_path}`
                         : require("../assets/noPosterSmall.png").default
                     }
                   />
-                  <CollectionName>
-                    {result.belongs_to_collection.name}
-                  </CollectionName>
+                  <CollectionName>{collection.name}</CollectionName>
                 </>
               </CollectionItem>
+              <Divider>▶︎</Divider>
+              {collection.parts.map((a) => (
+                <CollectionItem>
+                  <>
+                    <CollectionImg
+                      src={
+                        a.poster_path
+                          ? `https://image.tmdb.org/t/p/w300${a.poster_path}`
+                          : require("../assets/noPosterSmall.png").default
+                      }
+                    />
+                    <CollectionName>{a.title}</CollectionName>
+                  </>
+                </CollectionItem>
+              ))}
             </CollectionContainer>
           ) : (
             <NoCollectionMsg>No Collection</NoCollectionMsg>

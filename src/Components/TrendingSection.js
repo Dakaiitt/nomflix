@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Image } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Slider from "react-slick";
+import LogoImg from "../assets/nomflix.png";
 
 const Container = styled.div`
   :not(:last-child) {
@@ -22,6 +23,28 @@ const Grid = styled.div`
   grid-gap: 15px;
 `;
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "skyblue" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
+}
+
 const settings = {
   dots: false,
   infinite: true,
@@ -35,9 +58,20 @@ const settings = {
 const StyledSlider = styled(Slider)`
   margin-top: 20px;
 
-  .slick-next {
-    color: yellow;
-  }
+  /* .slick-prev:before {
+    width: 46px;
+    height: 46px;
+    content: "" !important;
+    position: absolute;
+    top: -11px;
+    background-image: url("../assets/nomflix.png");
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    background-size: 46px;
+    opacity: 1 !important;
+    background-color: pink;
+    z-index: 5;
+  } */
 `;
 
 const TrendingSection = ({ title, children }) => (

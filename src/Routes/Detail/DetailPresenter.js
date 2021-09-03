@@ -5,8 +5,8 @@ import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import ImdbLogo from "../../assets/imdb.png";
 import StarRatings from "react-star-ratings";
-import DetailTab from "Components/DetailTab";
 import Tabs from "Components/Tabs";
+import { collectionApi } from "api";
 
 const Container = styled.div`
   height: calc(100vh - 60px);
@@ -110,7 +110,7 @@ const DTabContent = styled.div`
   grid-column: 1 / 4;
 `;
 
-const DetailPresenter = ({ result, loading, error }) =>
+const DetailPresenter = ({ result, loading, error, collection }) =>
   loading ? (
     <>
       <Helmet>
@@ -210,12 +210,7 @@ const DetailPresenter = ({ result, loading, error }) =>
             </Item>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
-          {/* <DetailTab result={result} /> */}
-          <Tabs result={result} />
-          {/* <YouTube
-            videoId={result.videos.results.map((a) => a.key)[0]}
-            opts={opts}
-          /> */}
+          <Tabs result={result} collection={collection} />
         </Data>
       </Content>
     </Container>

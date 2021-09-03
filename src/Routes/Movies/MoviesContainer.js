@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import MoviesPresenter from "./MoviesPresenter.js";
+import HomePresenter from "../Home/HomePresenter";
+import Main from "../../Components/Main";
 import { moviesApi } from "api";
 
 export default class extends React.Component {
@@ -40,15 +42,18 @@ export default class extends React.Component {
 
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
-    // console.log(this.state);
+    console.log(this.state);
     return (
-      <MoviesPresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
-        popular={popular}
-        error={error}
-        loading={loading}
-      />
+      <>
+        <MoviesPresenter
+          nowPlaying={nowPlaying}
+          upcoming={upcoming}
+          popular={popular}
+          error={error}
+          loading={loading}
+        />
+        <HomePresenter popular={popular} />
+      </>
     );
   }
 }
